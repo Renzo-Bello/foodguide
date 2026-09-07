@@ -915,36 +915,90 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,
 .gkg-badge.warn{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-line);}
 
 /* ─── CONVERSOR DE ALIMENTOS ─── */
-.conv-row{display:flex;gap:10px;align-items:flex-end;margin-bottom:14px;}
-.conv-field{flex:1;min-width:0;}
-.conv-amt{width:84px;flex-shrink:0;}
+.conv-group{margin-bottom:16px;}
+.conv-group > .field-label{display:flex;align-items:baseline;gap:6px;}
+.field-unit-hint{
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:400;
+  letter-spacing:1px;color:var(--ink4);text-transform:none;
+}
+.conv-amt-wrap{
+  display:flex;align-items:stretch;
+  border:1px solid var(--border-mid);border-radius:var(--r-md);
+  background:var(--white);overflow:hidden;max-width:280px;
+  transition:border-color 0.2s;
+}
+.conv-amt-wrap:focus-within{border-color:var(--gold);}
+.conv-amt-wrap input{
+  flex:1;min-width:0;width:100%;border:0;outline:0;background:none;
+  font-family:'DM Mono',monospace;font-size:16px;letter-spacing:0.5px;
+  text-align:center;color:var(--ink);padding:12px 2px;
+  -moz-appearance:textfield;
+}
+.conv-amt-wrap input::-webkit-outer-spin-button,
+.conv-amt-wrap input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+.conv-amt-unit{
+  display:flex;align-items:center;padding-right:10px;
+  font-family:'DM Mono',monospace;font-size:13px;color:var(--ink3);
+}
+.conv-step{
+  width:46px;flex-shrink:0;border:0;background:var(--cream);
+  color:var(--ink2);font-size:19px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.15s;
+}
+.conv-step:first-child{border-right:1px solid var(--border);}
+.conv-step:last-child{border-left:1px solid var(--border);}
+.conv-step:active{background:var(--gold-bg);color:var(--gold);}
+.conv-quick{display:flex;gap:6px;margin-top:8px;max-width:280px;}
+.conv-quick button{
+  flex:1;font-family:'DM Mono',monospace;font-size:11px;
+  padding:7px 0;border-radius:var(--r-sm);cursor:pointer;
+  border:1px solid var(--border-mid);background:var(--white);color:var(--ink3);
+  transition:transform 0.14s,background 0.16s,border-color 0.16s,color 0.16s;
+}
+.conv-quick button.active{background:var(--gold-bg);border-color:var(--gold-line-strong);color:var(--gold);font-weight:500;}
+.conv-quick button:active{transform:scale(0.95);}
+
+.conv-swap-line{display:flex;align-items:center;gap:12px;margin:8px 0 16px;}
+.conv-swap-rule{flex:1;height:1px;background:var(--border);}
 .conv-swap-btn{
   flex-shrink:0;width:40px;height:40px;border-radius:50%;
   background:var(--gold-bg);border:1px solid var(--gold-line);
   color:var(--gold);font-size:15px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
   transition:transform 0.25s cubic-bezier(.22,.61,.36,1);
-  margin-bottom:2px;
 }
 .conv-swap-btn:active{transform:rotate(180deg) scale(0.92);}
+
 .conv-result{
   background:var(--white);border:1px solid var(--border);
   border-radius:var(--r-xl);padding:22px;text-align:center;
   animation:cardIn 0.3s ease;
 }
 .conv-result-eq{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
-.conv-result-val{font-family:'DM Serif Display',serif;font-size:44px;color:var(--gold);line-height:1;}
+.conv-result-val{font-family:'DM Serif Display',serif;font-size:46px;color:var(--gold);line-height:1;}
 .conv-result-unit{font-family:'DM Sans',sans-serif;font-size:16px;color:var(--ink3);margin-left:4px;}
 .conv-result-food{font-size:14px;color:var(--ink2);margin-top:8px;}
 .conv-result-food strong{color:var(--ink);}
 .conv-result-detail{
-  display:flex;justify-content:center;gap:18px;margin-top:16px;padding-top:14px;
+  display:flex;justify-content:center;gap:12px;margin-top:16px;padding-top:14px;
   border-top:1px solid var(--border);
 }
-.conv-result-detail-item{text-align:center;}
-.conv-result-detail-val{font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink);}
-.conv-result-detail-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);margin-top:2px;}
-.conv-empty{padding:26px 16px;text-align:center;font-size:13px;color:var(--ink3);line-height:1.6;}
+.conv-result-detail-item{text-align:center;flex:1;min-width:0;}
+.conv-result-detail-val{font-family:'DM Serif Display',serif;font-size:16px;color:var(--ink);}
+.conv-result-detail-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.8px;text-transform:uppercase;color:var(--ink3);margin-top:3px;line-height:1.35;}
+.conv-delta{
+  margin-top:14px;display:inline-flex;align-items:center;gap:6px;
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:600;
+  padding:6px 13px;border-radius:var(--r-pill);
+}
+.conv-delta.up{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-line);}
+.conv-delta.down{background:var(--green-bg);color:var(--green);border:1px solid var(--green-line);}
+.conv-delta.same{background:var(--cream);color:var(--ink3);border:1px solid var(--border);}
+.conv-empty{
+  padding:24px 16px;text-align:center;font-size:13px;color:var(--ink3);line-height:1.6;
+  background:var(--white);border:1px dashed var(--border-mid);border-radius:var(--r-xl);
+}
 
 /* ─── ANATOMÍA DE ETIQUETA NUTRICIONAL ─── */
 .label-diagram{
@@ -1032,6 +1086,111 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,
 .dv-tag.aumentar{background:var(--green-bg);color:var(--green);border:1px solid var(--green-line);}
 .dv-tag.prioritario{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-line);}
 .dv-tag.objetivo{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-line);}
+
+/* ─── CABECERAS DE PANEL (editorial / high-ticket) ─── */
+.panel-h{
+  font-family:'DM Serif Display',serif;font-weight:400;
+  font-size:27px;line-height:1.14;letter-spacing:-0.4px;
+  color:var(--ink);margin-bottom:12px;
+}
+.panel-h em{color:var(--gold);font-style:italic;}
+.panel-lead{
+  font-size:13px;color:var(--ink3);line-height:1.75;
+  max-width:400px;margin-bottom:24px;
+}
+
+/* ─── MI PLAN · TARJETA DE CONFIGURACIÓN PLEGABLE ─── */
+.setup-card{
+  background:var(--white);border:1px solid var(--border-mid);
+  border-radius:var(--r-xl);margin-bottom:16px;overflow:hidden;
+}
+.setup-head{
+  width:100%;display:flex;align-items:center;gap:12px;
+  padding:15px 17px;background:none;border:0;cursor:pointer;text-align:left;font-family:inherit;
+}
+.setup-head-txt{flex:1;min-width:0;}
+.setup-eyebrow{
+  font-family:'DM Mono',monospace;font-size:8.5px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;color:var(--gold);
+}
+.setup-title{
+  font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink);
+  margin-top:2px;line-height:1.2;
+}
+.setup-chevron{
+  width:26px;height:26px;flex-shrink:0;border-radius:50%;
+  border:1px solid var(--border-mid);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink3);font-size:10px;
+  transition:transform 0.28s cubic-bezier(.22,.61,.36,1);
+}
+.setup-card.open .setup-chevron{transform:rotate(180deg);}
+.setup-summary{
+  padding:0 17px 15px;
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2px;
+  color:var(--ink3);line-height:1.7;
+}
+.setup-card.open .setup-summary{display:none;}
+.setup-body{padding:16px 17px 18px;border-top:1px solid var(--border);}
+.setup-card:not(.open) .setup-body{display:none;}
+
+/* ─── MI PLAN · SEPARADOR DE PASO ─── */
+.plan-step{display:flex;align-items:center;gap:11px;margin:28px 0 18px;}
+.plan-step-num{
+  font-family:'DM Mono',monospace;font-size:8.5px;font-weight:500;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);
+  border:1px solid var(--gold-line);border-radius:var(--r-pill);
+  padding:5px 10px;flex-shrink:0;
+}
+.plan-step-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--ink);flex-shrink:0;}
+.plan-step-line{flex:1;height:1px;background:var(--border);}
+
+/* ─── COMPRAS · CHECKLIST ─── */
+.shop-toolbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:22px;}
+.shop-progress{
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.4px;
+  color:var(--ink3);flex:1;min-width:110px;
+}
+.shop-progress b{color:var(--gold);}
+.shop-btn{
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:500;
+  letter-spacing:1.5px;text-transform:uppercase;
+  padding:8px 13px;border-radius:var(--r-pill);cursor:pointer;
+  border:1px solid var(--border-mid);background:var(--white);color:var(--ink2);
+  transition:transform 0.14s,background 0.18s,border-color 0.18s,color 0.18s;
+}
+.shop-btn:active{transform:scale(0.96);}
+.shop-btn.primary{background:var(--gold-bg);border-color:var(--gold-line-strong);color:var(--gold);}
+.shop-btn.copied{background:var(--green-bg);border-color:var(--green-line);color:var(--green);}
+.shop-group{margin-bottom:22px;}
+.shop-group-head{
+  display:flex;align-items:baseline;gap:10px;
+  padding-bottom:9px;margin-bottom:2px;border-bottom:1px solid var(--gold-line);
+}
+.shop-group-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink);flex:1;}
+.shop-group-count{
+  font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--gold);flex-shrink:0;
+}
+.shop-item{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:12px 2px;cursor:pointer;border-bottom:1px solid var(--border);
+  -webkit-user-select:none;user-select:none;
+}
+.shop-item:last-child{border-bottom:0;}
+.shop-check{
+  width:20px;height:20px;flex-shrink:0;margin-top:1px;
+  border:1.5px solid var(--border-mid);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  color:transparent;font-size:11px;transition:background 0.16s,border-color 0.16s,color 0.16s;
+}
+.shop-item.done .shop-check{background:var(--gold);border-color:var(--gold);color:#fff;}
+.shop-item-body{flex:1;min-width:0;}
+.shop-item-name{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.35;}
+.shop-item.done .shop-item-name{color:var(--ink4);text-decoration:line-through;}
+.shop-item-why{font-size:11.5px;color:var(--ink3);line-height:1.55;margin-top:3px;}
+.shop-item.done .shop-item-why{opacity:0.45;}
+.shop-emoji{margin-right:6px;}
 </style>
 </head>
 <body>
@@ -1056,6 +1215,15 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,
   <div class="drawer-head">
     <span class="drawer-title">Herramientas</span>
     <button class="drawer-close" onclick="closeDrawer()" aria-label="Cerrar menú">✕</button>
+  </div>
+  <div class="drawer-eyebrow">Empieza aquí</div>
+  <div class="drawer-item" id="drawer-compras" onclick="goToDrawerTab('compras')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')goToDrawerTab('compras')">
+    <div class="drawer-item-icon">🛒</div>
+    <div class="drawer-item-text">
+      <div class="drawer-item-name">Compras</div>
+      <div class="drawer-item-sub">Los alimentos de mayor calidad por macronutriente y fibra</div>
+    </div>
+    <span class="drawer-item-arrow">›</span>
   </div>
   <div class="drawer-eyebrow">Calculadoras y guías</div>
   <div class="drawer-item" id="drawer-porciones" onclick="goToDrawerTab('porciones')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')goToDrawerTab('porciones')">
@@ -1122,79 +1290,114 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,
 
 <!-- PANEL: MI PLAN -->
 <section class="panel active" id="panel-plan" role="tabpanel" aria-labelledby="tabbtn-plan">
-  <div class="section-eyebrow">Configura tu guía</div>
+  <div class="section-eyebrow">Mi plan</div>
+  <h2 class="panel-h">Tu guía, calibrada<br>a <em>tus</em> números.</h2>
+  <p class="panel-lead">Ingresa lo que Renzo definió en tu asesoría. La guía de alimentos se adapta a tu objetivo y a tus restricciones.</p>
 
-  <div class="field-group">
-    <label class="field-label" for="sel-sexo">Sexo biológico</label>
-    <select class="field-select" id="sel-sexo" onchange="savePrefs();buildPlan()">
-      <option value="m">Masculino</option>
-      <option value="f">Femenino</option>
-    </select>
-  </div>
-  <div class="field-group">
-    <label class="field-label" for="sel-etapa">Objetivo actual</label>
-    <select class="field-select" id="sel-etapa" onchange="savePrefs();buildPlan()">
-      <option value="volumen">Volumen — ganar masa muscular</option>
-      <option value="definicion">Definición — perder grasa, conservar músculo</option>
-      <option value="recomp">Recomposición corporal</option>
-      <option value="mantenimiento">Mantenimiento</option>
-    </select>
-  </div>
-  <div class="field-group">
-    <label class="field-label" for="inp-kcal">Tus calorías diarias <span style="font-weight:400;color:var(--ink3)">(informadas en la asesoría)</span></label>
-    <div style="display:flex;gap:8px;align-items:center">
-      <input type="number" id="inp-kcal" class="field-select" placeholder="Ej: 2200" min="1000" max="6000" step="50"
-        style="flex:1;font-family:'DM Mono',monospace;font-size:14px;letter-spacing:0.5px"
-        oninput="savePrefs();buildPlan()">
-      <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink3);flex-shrink:0">kcal/día</span>
-    </div>
-  </div>
-  <div class="field-group">
-    <label class="field-label" for="inp-peso">Tu peso corporal <span style="font-weight:400;color:var(--ink3)">(opcional — para ver g/kg reales)</span></label>
-    <div style="display:flex;gap:8px;align-items:center">
-      <input type="number" id="inp-peso" class="field-select" placeholder="Ej: 72" min="30" max="250" step="0.5"
-        style="flex:1;font-family:'DM Mono',monospace;font-size:14px;letter-spacing:0.5px"
-        oninput="savePrefs();buildPlan()">
-      <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink3);flex-shrink:0">kg</span>
+  <div class="setup-card" id="setup-card">
+    <button type="button" class="setup-head" onclick="toggleSetup()" aria-controls="setup-body">
+      <span class="setup-head-txt">
+        <span class="setup-eyebrow">Paso 1</span>
+        <span class="setup-title">Tu configuración</span>
+      </span>
+      <span class="setup-chevron" aria-hidden="true">▾</span>
+    </button>
+    <div class="setup-summary" id="setup-summary">Toca para configurar tu objetivo y tus macros</div>
+    <div class="setup-body" id="setup-body">
+
+      <div class="field-group">
+        <label class="field-label" for="sel-sexo">Sexo biológico</label>
+        <select class="field-select" id="sel-sexo" onchange="savePrefs();buildPlan()">
+          <option value="m">Masculino</option>
+          <option value="f">Femenino</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="sel-etapa">Objetivo actual</label>
+        <select class="field-select" id="sel-etapa" onchange="savePrefs();buildPlan()">
+          <option value="volumen">Volumen — ganar masa muscular</option>
+          <option value="definicion">Definición — perder grasa, conservar músculo</option>
+          <option value="recomp">Recomposición corporal</option>
+          <option value="mantenimiento">Mantenimiento</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="inp-kcal">Calorías diarias <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink4)">· de tu asesoría</span></label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="number" id="inp-kcal" class="field-select" placeholder="Ej: 2200" min="1000" max="6000" step="50"
+            style="flex:1;font-family:'DM Mono',monospace;font-size:14px;letter-spacing:0.5px"
+            oninput="savePrefs();buildPlan()">
+          <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink3);flex-shrink:0">kcal</span>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="inp-peso">Peso corporal <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink4)">· opcional, para ver g/kg</span></label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="number" id="inp-peso" class="field-select" placeholder="Ej: 72" min="30" max="250" step="0.5"
+            style="flex:1;font-family:'DM Mono',monospace;font-size:14px;letter-spacing:0.5px"
+            oninput="savePrefs();buildPlan()">
+          <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink3);flex-shrink:0">kg</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Macros diarios <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink4)">· de tu asesoría</span></label>
+        <div class="macro-input-row">
+          <div class="macro-input-col prot">
+            <span class="macro-input-label">Proteína</span>
+            <div class="macro-input-field">
+              <input type="number" id="inp-prot" min="0" max="600" step="1" placeholder="0" oninput="savePrefs();buildMacroSummary();updateSetupSummary()">
+              <span class="macro-input-unit">g</span>
+            </div>
+          </div>
+          <div class="macro-input-col carb">
+            <span class="macro-input-label">Carbos</span>
+            <div class="macro-input-field">
+              <input type="number" id="inp-carb" min="0" max="900" step="1" placeholder="0" oninput="savePrefs();buildMacroSummary();updateSetupSummary()">
+              <span class="macro-input-unit">g</span>
+            </div>
+          </div>
+          <div class="macro-input-col fat">
+            <span class="macro-input-label">Grasas</span>
+            <div class="macro-input-field">
+              <input type="number" id="inp-fat" min="0" max="300" step="1" placeholder="0" oninput="savePrefs();buildMacroSummary();updateSetupSummary()">
+              <span class="macro-input-unit">g</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group" style="margin-bottom:0">
+        <label class="field-label">Restricciones alimentarias</label>
+        <div class="chips-wrap">
+          <button class="chip-btn active" id="chip-ninguna" onclick="toggleChip(this,'ninguna')">✅ Sin restricciones</button>
+          <button class="chip-btn" id="chip-veg" onclick="toggleChip(this,'veg')">🌿 Vegetariano</button>
+          <button class="chip-btn" id="chip-cel" onclick="toggleChip(this,'cel')">🌾 Sin gluten</button>
+          <button class="chip-btn" id="chip-lac" onclick="toggleChip(this,'lac')">🥛 Sin lactosa</button>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <div class="field-group">
-    <label class="field-label">Tus macros diarios <span style="font-weight:400;color:var(--ink3)">(los que te dio Renzo en la asesoría)</span></label>
-    <div class="macro-input-row">
-      <div class="macro-input-col prot">
-        <span class="macro-input-label">Proteína</span>
-        <div class="macro-input-field">
-          <input type="number" id="inp-prot" min="0" max="600" step="1" placeholder="0" oninput="savePrefs();buildMacroSummary()">
-          <span class="macro-input-unit">g</span>
-        </div>
-      </div>
-      <div class="macro-input-col carb">
-        <span class="macro-input-label">Carbos</span>
-        <div class="macro-input-field">
-          <input type="number" id="inp-carb" min="0" max="900" step="1" placeholder="0" oninput="savePrefs();buildMacroSummary()">
-          <span class="macro-input-unit">g</span>
-        </div>
-      </div>
-      <div class="macro-input-col fat">
-        <span class="macro-input-label">Grasas</span>
-        <div class="macro-input-field">
-          <input type="number" id="inp-fat" min="0" max="300" step="1" placeholder="0" oninput="savePrefs();buildMacroSummary()">
-          <span class="macro-input-unit">g</span>
-        </div>
-      </div>
-    </div>
-  </div>
   <div id="macro-summary-card"></div>
-    <div class="chips-wrap">
-      <button class="chip-btn active" id="chip-ninguna" onclick="toggleChip(this,'ninguna')">✅ Sin restricciones</button>
-      <button class="chip-btn" id="chip-veg" onclick="toggleChip(this,'veg')">🌿 Vegetariano</button>
-      <button class="chip-btn" id="chip-cel" onclick="toggleChip(this,'cel')">🌾 Sin gluten</button>
-      <button class="chip-btn" id="chip-lac" onclick="toggleChip(this,'lac')">🥛 Sin lactosa</button>
-    </div>
+
+  <div class="plan-step">
+    <span class="plan-step-num">Paso 2</span>
+    <span class="plan-step-title">Tu guía de alimentos</span>
+    <span class="plan-step-line"></span>
   </div>
 
   <div id="plan-content"></div>
+  <div class="safe-bottom"></div>
+</section>
+
+<!-- PANEL: COMPRAS -->
+<section class="panel" id="panel-compras" role="tabpanel" aria-labelledby="drawer-compras">
+  <div class="section-eyebrow">Lista de compras</div>
+  <h2 class="panel-h">Lo que debería<br>estar en tu <em>carro</em>.</h2>
+  <p class="panel-lead">Las mejores fuentes de cada macronutriente y de fibra, elegidas por densidad nutricional. Marca lo que ya tienes en casa; exporta el resto.</p>
+  <div id="compras-content"></div>
   <div class="safe-bottom"></div>
 </section>
 
@@ -1245,31 +1448,40 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,
     <div class="alert-body">Elige un alimento y una cantidad, y te mostramos cuánto necesitas de otro alimento para aportar el mismo macro (proteína o carbohidratos). Ideal para reemplazar comidas sin descuadrar tu plan.</div>
   </div>
 
-  <div class="conv-row">
-    <div class="conv-field">
-      <label class="field-label" for="conv-from">Tengo</label>
-      <select class="field-select" id="conv-from" onchange="buildConversor()"></select>
-    </div>
-    <div class="conv-amt">
-      <label class="field-label" for="conv-from-amt">Cantidad</label>
-      <input type="number" id="conv-from-amt" class="field-select" value="100" min="1" max="2000" step="5"
-        style="font-family:'DM Mono',monospace;font-size:14px;text-align:center"
-        oninput="buildConversor()">
-    </div>
+  <div class="conv-group">
+    <label class="field-label" for="conv-from">Tengo</label>
+    <select class="field-select" id="conv-from" onchange="onConvFromChange()"></select>
   </div>
 
-  <div class="conv-row" style="align-items:center;justify-content:center">
-    <button class="conv-swap-btn" onclick="swapConversor()" aria-label="Intercambiar alimentos">⇅</button>
-  </div>
-
-  <div class="conv-row">
-    <div class="conv-field">
-      <label class="field-label" for="conv-to">Quiero reemplazar por</label>
-      <select class="field-select" id="conv-to" onchange="buildConversor()"></select>
+  <div class="conv-group">
+    <label class="field-label" for="conv-from-amt">Cantidad <span class="field-unit-hint">(en gramos)</span></label>
+    <div class="conv-amt-wrap">
+      <button type="button" class="conv-step" onclick="convStep(-10)" aria-label="Restar 10 gramos" tabindex="-1">−</button>
+      <input type="number" id="conv-from-amt" value="100" min="1" max="2000" step="5"
+        inputmode="numeric" aria-label="Cantidad en gramos" oninput="buildConversor()">
+      <span class="conv-amt-unit" aria-hidden="true">g</span>
+      <button type="button" class="conv-step" onclick="convStep(10)" aria-label="Sumar 10 gramos" tabindex="-1">+</button>
+    </div>
+    <div class="conv-quick">
+      <button type="button" data-v="50" onclick="convSet(50)">50 g</button>
+      <button type="button" data-v="100" onclick="convSet(100)">100 g</button>
+      <button type="button" data-v="150" onclick="convSet(150)">150 g</button>
+      <button type="button" data-v="200" onclick="convSet(200)">200 g</button>
     </div>
   </div>
 
-  <div id="conv-result"></div>
+  <div class="conv-swap-line">
+    <span class="conv-swap-rule"></span>
+    <button class="conv-swap-btn" onclick="swapConversor()" aria-label="Intercambiar los dos alimentos">⇅</button>
+    <span class="conv-swap-rule"></span>
+  </div>
+
+  <div class="conv-group">
+    <label class="field-label" for="conv-to">Quiero reemplazar por</label>
+    <select class="field-select" id="conv-to" onchange="buildConversor()"></select>
+  </div>
+
+  <div id="conv-result" aria-live="polite"></div>
 
   <div class="info-banner">El cálculo iguala el aporte de <strong>proteína</strong> o <strong>carbohidratos</strong> (según la categoría del alimento de origen) entre ambos alimentos — no iguala calorías exactas. Ambos alimentos deben ser de la misma categoría (proteína o carbohidrato) para que el reemplazo sea coherente nutricionalmente.</div>
   <div class="safe-bottom"></div>
@@ -1648,7 +1860,7 @@ const PLAN_DATA = {
 
 const MACROS_DATA = [
   {key:'prot',nombre:'Proteínas',icon:'<img src=\'data:image/jpeg;base64,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\' style=\'width:100%;height:100%;object-fit:cover;border-radius:var(--r-sm)\'>',sub:'Los mejores alimentos con sus reemplazos reales',color:'var(--blue)',bg:'var(--blue-bg)',desc:'La proteína es el macronutriente de construcción y preservación muscular. Objetivo mínimo: 1,6 g/kg/día entrenando.',items:[{e:'🥚',n:'Huevo entero',why:'La proteína de mayor biodisponibilidad del mundo real. PDCAAS 1.0. La yema tiene colina, vitamina D y colesterol bueno.',swaps:['🔄 Sin huevo: Tofu sedoso batido o proteína de guisantes','⬆️ Más proteína: 3 claras + 1 yema','💰 Económico: huevo + lentejas (combo completo)']},{e:'🍗',n:'Pechuga de pollo',why:'31g de proteína por 100g con solo 165 kcal. Imbatible en relación calidad/caloría.',swaps:['🔄 Más sabor: muslo de pollo sin piel (levemente más graso, más micronutrientes)','🌿 Veggie: pechuga de seitán o tofu firme marinado','⚡ Rápido: atún al natural (lata)']},{e:'🥩',n:'Carne vacuna magra',why:'Zinc + hierro hemo + B12 + proteína completa. Imposible de replicar al 100% con vegetales.',swaps:['🌿 Vegetariano: lentejas + pepitas de calabaza (zinc) + levadura nutricional (B12)','🐄 Menos grasa: lomo o solomillo vs. asado o costilla','🥫 Alternativa práctica: carne picada magra']},{e:'🐟',n:'Salmón',why:'Proteína + omega-3 EPA/DHA + vitamina D. El alimento más completo para un atleta.',swaps:['💰 Económico: sardinas en lata al agua (omega-3 equivalente)','🌿 Vegano: cápsulas de algas (único omega-3 vegano con EPA/DHA real)','🎣 Sin grasa: merluza o lenguado (proteína similar, menos omega-3)']},{e:'🫘',n:'Lentejas / Garbanzos',why:'Proteína vegetal + hierro + fibra + carbohidratos. El alimento más completo del reino vegetal.',swaps:['⬆️ Más proteína: combinar con arroz (aminoácidos completos)','🔄 Variedad: frijoles negros, edamame, habas','⚡ Rápido: lentejas en lata (ya cocidas)']},{e:'🧀',n:'Queso cottage / Ricota',why:'Caseína de absorción lenta. Ideal pre-cama para síntesis proteica nocturna.',swaps:['🥛 Sin lactosa: versión deslactosada (mismo perfil proteico)','🌿 Vegano: tofu sedoso con vainilla y stevia','💪 Más proteína: yogur griego 0% (15g prot/100g)']},{e:'🍗',n:'Panitas de pollo',why:'Alta proteína a bajo costo. Perfil nutricional muy similar a la pechuga con una textura distinta que puede mejorar la adherencia al plan.',swaps:['🔄 Misma proteína: pechuga o muslo de pollo','⚡ Más rápido: atún al natural en lata','🌿 Vegetal: tofu firme marinado']},{e:'🌱',n:'Carne de soya (TVP)',why:'50g seco equivalen a 25g de proteína. La fuente vegetal más densa y económica. Reemplaza la carne picada en cualquier receta.',swaps:['🔄 Más completa: tempeh (fermentado, mejor perfil aminoacídico)','🥩 Animal: carne molida magra 90%','⚡ Sin preparación: edamame cocido']},{e:'🎣',n:'Atún en lata al natural',why:'23g de proteína por 100g con menos de 100 kcal. La opción más práctica y económica para completar proteína en cualquier comida sin cocinar.',swaps:['🔄 Mismo perfil: salmón en lata al agua','🐠 Más omega-3: sardinas en lata','🍗 Sin pescado: pechuga de pollo cocida y refrigerada']},{e:'🦪',n:'Choritos en lata',why:'19g de proteína por 100g escurrido + hierro hemo + zinc + omega-3. Uno de los mariscos más económicos y nutritivos. Subestimado en la mayoría de los planes.',swaps:['🔄 Similar: mejillones frescos cocidos','🎣 Más práctico: atún al natural','🥩 Sin marisco: carne molida magra']}]},
-  {key:'carb',nombre:'Carbohidratos',icon:'<img src=\'data:image/jpeg;base64,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\' style=\'width:100%;height:100%;object-fit:cover;border-radius:var(--r-sm)\'>',sub:'Los mejores con sus alternativas inteligentes',color:'var(--gold)',bg:'var(--gold-bg)',desc:'Los CHO son el combustible principal del entrenamiento. No son el enemigo — las fuentes de mala calidad sí lo son.',items:[{e:'🌾',n:'Avena',why:'Beta-glucano para saciedad + digestión lenta + fibra soluble. El mejor desayuno pre o post entreno matutino.',swaps:['🌾 Sin gluten: avena certificada sin gluten o copos de arroz','⚡ Más rápido: porridge instantáneo (revisar sin azúcar)','🍫 Con sabor: avena + cacao puro + banana (sin azúcar agregada)']},{e:'🍚',n:'Arroz blanco',why:'Digestión rápida post-entrenamiento. Sin antinutrientes. El carbohidrato de peri-entrenamiento por excelencia.',swaps:['🌿 Más nutrientes: quinoa (misma función + proteína + hierro)','🎑 Sin gluten: ya lo es naturalmente','🏆 Variedad: arroz integral en comidas no peri-entreno (más fibra)']},{e:'🍠',n:'Batata / Boniato',why:'Vitamina A, potasio, digestión media. Superior a la papa en densidad de micronutrientes.',swaps:['🥔 Alternativa: papa hervida o al horno (similar CHO, más saciante)','🌿 Exótico: ñame o yuca (sin gluten, misma función)','⚡ Más rápido: papa al microondas (8 min, misma calidad nutricional)']},{e:'🫘',n:'Legumbres',why:'CHO complejo + proteína vegetal + fibra + hierro. El carbohidrato más completo nutricionalmente.',swaps:['🔄 Variedad: frijoles negros, lentejas rojas (se cocinan en 15 min sin remojar), edamame','⚡ Práctico: versiones en lata (enjuagar bien para reducir sodio)','🌿 Quinoa: si quieres CHO + proteína completa en uno']},{e:'🥦',n:'Verduras (volumen libre)',why:'Casi sin calorías pero con fibra, vitaminas y agua. No necesitan periodización — comer siempre.',swaps:['🔄 Crucíferas: brócoli, coliflor, coles de Bruselas, rúcula','🥬 De hoja: espinaca, lechuga, berro, rúcula','🎨 Color: zanahoria, pimiento rojo, tomate, remolacha']},{e:'🫓',n:'Pan pita integral',why:'~55g de CHO por 100g con fibra adicional vs la versión blanca. Práctico para armar comidas rápidas con proteína y verdura.',swaps:['🔄 Versión blanca: pan pita normal (mismo CHO, menos fibra)','🌾 Sin gluten: wrap de maíz o arroz','⚡ Más densidad: marraqueta integral (similar tamaño, más compacta)']},{e:'🍞',n:'Pan molde integral',why:'Cómodo y versátil. La versión integral aporta fibra real que la blanca no tiene. Leer etiqueta: debe decir "harina integral" como primer ingrediente.',swaps:['🔄 Versión blanca: pan molde blanco (misma comodidad, menos fibra)','⚡ Más denso: pan de centeno o pan de semillas','💡 Casero: avena + huevo + plátano (pan sin harina real)']},{e:'🥖',n:'Pan ciabatta',why:'Miga aireada con buen índice glucémico moderado. Buena opción para comidas pre-entreno por su digestión relativamente rápida.',swaps:['🔄 Más fibra: versión integral o de masa madre','🫓 Más práctico: pan pita o molde (porciones más fáciles de controlar)','⚡ Sin pan: wrap de lechuga para reducir CHO totales']}]},
+  {key:'carb',nombre:'Carbohidratos',icon:'<img src=\'data:image/jpeg;base64,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\' style=\'width:100%;height:100%;object-fit:cover;border-radius:var(--r-sm)\'>',sub:'Los mejores con sus alternativas inteligentes',color:'var(--gold)',bg:'var(--gold-bg)',desc:'Los CHO son el combustible principal del entrenamiento. No son el enemigo — las fuentes de mala calidad sí lo son.',items:[{e:'🌾',n:'Avena',why:'Beta-glucano para saciedad + digestión lenta + fibra soluble. El mejor desayuno pre o post entreno matutino.',swaps:['🌾 Sin gluten: avena certificada sin gluten o copos de arroz','⚡ Más rápido: porridge instantáneo (revisar sin azúcar)','🍫 Con sabor: avena + cacao puro + banana (sin azúcar agregada)']},{e:'🍚',n:'Arroz blanco',why:'Digestión rápida post-entrenamiento. Sin antinutrientes. El carbohidrato de peri-entrenamiento por excelencia.',swaps:['🌿 Más nutrientes: quinoa (misma función + proteína + hierro)','🎑 Sin gluten: ya lo es naturalmente','🏆 Variedad: arroz integral en comidas no peri-entreno (más fibra)']},{e:'🍠',n:'Batata / Boniato',why:'Vitamina A, potasio, digestión media. Superior a la papa en densidad de micronutrientes.',swaps:['🥔 Alternativa: papa hervida o al horno (similar CHO, más saciante)','🌿 Exótico: ñame o yuca (sin gluten, misma función)','⚡ Más rápido: papa al microondas (8 min, misma calidad nutricional)']},{e:'🥔',n:'Papa hervida',why:'CHO de digestión media, muy saciante y económica. Con cáscara suma potasio y algo de fibra. Cocida y enfriada genera almidón resistente, que alimenta la microbiota.',swaps:['🍠 Más micronutrientes: batata o camote (más vitamina A)','⚡ Más rápida: papa al microondas 6–8 min','🥗 En frío: papa cocida y enfriada para ensaladas (almidón resistente)']},{e:'🫘',n:'Legumbres',why:'CHO complejo + proteína vegetal + fibra + hierro. El carbohidrato más completo nutricionalmente.',swaps:['🔄 Variedad: frijoles negros, lentejas rojas (se cocinan en 15 min sin remojar), edamame','⚡ Práctico: versiones en lata (enjuagar bien para reducir sodio)','🌿 Quinoa: si quieres CHO + proteína completa en uno']},{e:'🥦',n:'Verduras (volumen libre)',why:'Casi sin calorías pero con fibra, vitaminas y agua. No necesitan periodización — comer siempre.',swaps:['🔄 Crucíferas: brócoli, coliflor, coles de Bruselas, rúcula','🥬 De hoja: espinaca, lechuga, berro, rúcula','🎨 Color: zanahoria, pimiento rojo, tomate, remolacha']},{e:'🫓',n:'Pan pita integral',why:'~55g de CHO por 100g con fibra adicional vs la versión blanca. Práctico para armar comidas rápidas con proteína y verdura.',swaps:['🔄 Versión blanca: pan pita normal (mismo CHO, menos fibra)','🌾 Sin gluten: wrap de maíz o arroz','⚡ Más densidad: marraqueta integral (similar tamaño, más compacta)']},{e:'🍞',n:'Pan molde integral',why:'Cómodo y versátil. La versión integral aporta fibra real que la blanca no tiene. Leer etiqueta: debe decir "harina integral" como primer ingrediente.',swaps:['🔄 Versión blanca: pan molde blanco (misma comodidad, menos fibra)','⚡ Más denso: pan de centeno o pan de semillas','💡 Casero: avena + huevo + plátano (pan sin harina real)']},{e:'🥖',n:'Pan ciabatta',why:'Miga aireada con buen índice glucémico moderado. Buena opción para comidas pre-entreno por su digestión relativamente rápida.',swaps:['🔄 Más fibra: versión integral o de masa madre','🫓 Más práctico: pan pita o molde (porciones más fáciles de controlar)','⚡ Sin pan: wrap de lechuga para reducir CHO totales']}]},
   {key:'fat',nombre:'Grasas saludables',icon:'<img src=\'data:image/jpeg;base64,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\' style=\'width:100%;height:100%;object-fit:cover;border-radius:var(--r-sm)\'>',sub:'Las buenas, con sus swaps para cada situación',color:'var(--amber)',bg:'var(--amber-bg)',desc:'Las grasas son esenciales para hormonas, absorción de vitaminas A/D/E/K y función cerebral. Eliminarlas es un error garrafal.',items:[{e:'🫒',n:'Aceite de oliva extra virgen',why:'Ácido oleico + oleocantal (antiinflamatorio). El condimento base de cada comida. No usar para fritura a alta temperatura.',swaps:['🔥 Para fritura: aceite de aguacate o aceite de coco (más estable al calor)','💰 Económico: aceite de girasol alto oleico (similar perfil, más barato)','🌿 Sin procesar: aceitunas enteras (8-10 = aprox 1 cda de aceite)']},{e:'🥑',n:'Aguacate',why:'Grasa monoinsaturada + vitamina E + folato + potasio. Mejora absorción de vitaminas liposolubles de otros alimentos.',swaps:['💰 Más económico: aceitunas verdes o negras (mismas grasas mono)','🌰 Snack similar: almendras (más proteína, menos folato)','🥚 Sin aguacate: yema de huevo + aceite de oliva cubre similar función hormonal']},{e:'🐟',n:'Salmón / Sardinas',why:'Omega-3 EPA y DHA de máxima biodisponibilidad. El omega-3 que realmente llega a las células.',swaps:['💰 Económico: sardinas en lata (igual omega-3)','🌿 Vegano: cápsulas de aceite de algas (única fuente vegana de EPA/DHA real)','🎣 Variedad: caballa, arenque, trucha de mar (todos ricos en omega-3)']},{e:'🌰',n:'Nueces y almendras',why:'Nueces: omega-3 ALA + melatonina + polifenoles. Almendras: vitamina E + calcio + magnesio. Un puñado de cada una.',swaps:['🥜 Sin nueces: semillas de girasol o tahini (pasta de sésamo)','💰 Económico: cacahuate (técnicamente legumbre, pero similar perfil de grasas)','🌿 Más omega-3: nueces de macadamia + semillas de lino molido']},{e:'🌻',n:'Semillas variadas',why:'Chía: omega-3 + calcio + fibra. Lino: fitoestrógenos + omega-3. Calabaza: zinc. Girasol: vitamina E. Rotar todas.',swaps:['⚡ Más fácil: semillas molidas o aceite de lino (más biodisponible que semilla entera)','🔄 Variedad: semillas de cáñamo (omega-3 + proteína completa)','🥣 Uso diario: agregar a yogur, avena o ensaladas']}]},
   {key:'fiber',nombre:'Fibra',icon:'<img src=\'data:image/jpeg;base64,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\' style=\'width:100%;height:100%;object-fit:cover;border-radius:var(--r-sm)\'>',sub:'Digestión, saciedad y salud intestinal',color:'var(--green)',bg:'var(--green-bg)',desc:'La fibra no aporta energía directa, pero alimenta la microbiota, regula el tránsito intestinal y prolonga la saciedad. Objetivo: 25–38 g/día según sexo y tamaño corporal.',items:[{e:'🫘',n:'Legumbres (lentejas, garbanzos, frijoles)',why:'La fuente más densa de fibra + proteína vegetal. 100g cocidos aportan 7–9g de fibra.',swaps:['🔄 Variedad: alternar entre lentejas, garbanzos y frijoles negros','⚡ Práctico: versiones en lata (enjuagar bien)','🌿 Combo: legumbres + arroz integral para fibra + proteína completa']},{e:'🌾',n:'Avena integral',why:'Fibra soluble (beta-glucano) que reduce colesterol LDL y estabiliza la glucosa en sangre.',swaps:['🌾 Sin gluten: avena certificada sin gluten','🔄 Más concentrado: salvado de avena (más fibra por porción)']},{e:'🥦',n:'Verduras crucíferas (brócoli, coliflor)',why:'Fibra + volumen + micronutrientes con mínimas calorías. Ideales para saciedad en déficit.',swaps:['🔄 Variedad: coles de Bruselas, repollo, kale','🥬 De hoja: espinaca, rúcula (menos fibra pero suman volumen)']},{e:'🍎',n:'Frutas con cáscara (manzana, pera)',why:'Pectina, fibra soluble que alimenta a las bacterias beneficiosas del intestino.',swaps:['🔄 Variedad: ciruelas, kiwi con cáscara bien lavado','🍇 Extra: frutas rojas con semilla (frambuesa, mora)']},{e:'🌰',n:'Semillas de chía y lino',why:'Fibra soluble e insoluble + omega-3. Dos cucharadas aportan cerca de 10g de fibra.',swaps:['🥣 Uso diario: agregar a yogur, avena o batidos','🔄 Sin semillas: salvado de trigo (si no eres celíaco)']}]}
 ];
@@ -1998,6 +2210,7 @@ function buildPlan(){
   }
 
   document.getElementById('plan-content').innerHTML = html;
+  updateSetupSummary();
 }
 
 function buildMacros(){
@@ -2498,11 +2711,56 @@ function populateConvSelects(){
   fromSel.innerHTML = buildOptions();
   toSel.innerHTML = buildOptions();
 
-  // Valores iniciales distintos y de la misma categoría para un ejemplo coherente
-  const defaultFrom = groups.c.find(f=>f.name==='Marraqueta') ? 'Marraqueta' : groups.c[0]?.name;
-  const defaultTo = groups.c.find(f=>f.name==='Avena cruda') ? 'Avena cruda' : groups.c[1]?.name;
-  if(defaultFrom) fromSel.value = defaultFrom;
-  if(defaultTo) toSel.value = defaultTo;
+  const ls = k => { try{ return localStorage.getItem(k); }catch(e){ return null; } };
+  const has = (sel, v) => v && [...sel.options].some(o => o.value === v);
+
+  const defFrom = groups.c.find(f=>f.name==='Marraqueta') ? 'Marraqueta' : groups.c[0]?.name;
+  const defTo   = groups.c.find(f=>f.name==='Avena cruda') ? 'Avena cruda' : groups.c[1]?.name;
+  const savedFrom = ls('sl_conv_from'), savedTo = ls('sl_conv_to'), savedAmt = ls('sl_conv_amt');
+
+  fromSel.value = has(fromSel, savedFrom) ? savedFrom : (defFrom || '');
+  toSel.value   = has(toSel, savedTo)     ? savedTo   : (defTo || '');
+
+  const amtInp = document.getElementById('conv-from-amt');
+  if(amtInp && savedAmt && parseFloat(savedAmt) > 0) amtInp.value = savedAmt;
+}
+
+function persistConversor(){
+  try{
+    localStorage.setItem('sl_conv_from', document.getElementById('conv-from').value || '');
+    localStorage.setItem('sl_conv_to', document.getElementById('conv-to').value || '');
+    localStorage.setItem('sl_conv_amt', document.getElementById('conv-from-amt').value || '');
+  }catch(e){}
+}
+
+function convStep(delta){
+  const inp = document.getElementById('conv-from-amt');
+  if(!inp) return;
+  let v = Math.round(((parseFloat(inp.value) || 0) + delta) / 5) * 5;
+  if(v < 5) v = 5;
+  if(v > 2000) v = 2000;
+  inp.value = v;
+  buildConversor();
+}
+function convSet(v){
+  const inp = document.getElementById('conv-from-amt');
+  if(!inp) return;
+  inp.value = v;
+  buildConversor();
+}
+
+function onConvFromChange(){
+  // Si el alimento de reemplazo quedó en otra categoría, lo alineamos a la del origen
+  const foods = getAllConvFoods();
+  const fromSel = document.getElementById('conv-from');
+  const toSel = document.getElementById('conv-to');
+  const from = foods.find(f=>f.name===fromSel.value);
+  const to = foods.find(f=>f.name===toSel.value);
+  if(from && to && from.macro !== to.macro){
+    const firstSame = foods.find(f=>f.macro===from.macro && f.name!==from.name);
+    if(firstSame) toSel.value = firstSame.name;
+  }
+  buildConversor();
 }
 
 function swapConversor(){
@@ -2524,11 +2782,16 @@ function buildConversor(){
   const resultEl = document.getElementById('conv-result');
   if(!resultEl) return;
 
+  document.querySelectorAll('.conv-quick button').forEach(b => {
+    b.classList.toggle('active', parseFloat(b.dataset.v) === fromAmt);
+  });
+  persistConversor();
+
   const fromFood = foods.find(f=>f.name===fromName);
   const toFood = foods.find(f=>f.name===toName);
 
   if(!fromFood || !toFood || fromAmt <= 0){
-    resultEl.innerHTML = `<div class="conv-empty">Selecciona ambos alimentos y una cantidad válida para ver el resultado.</div>`;
+    resultEl.innerHTML = `<div class="conv-empty">Elige los dos alimentos y una cantidad en gramos para ver la equivalencia.</div>`;
     return;
   }
 
@@ -2540,32 +2803,43 @@ function buildConversor(){
   const toAmt = Math.round(macroTotal * toFood.gPerMacro);
   const fromKcal = Math.round(fromAmt * fromFood.kcalPer100 / 100);
   const toKcal = Math.round(toAmt * toFood.kcalPer100 / 100);
+  const deltaKcal = toKcal - fromKcal;
+
+  let deltaHtml;
+  if(Math.abs(deltaKcal) <= 5){
+    deltaHtml = `<div class="conv-delta same">≈ mismas calorías que el original</div>`;
+  } else if(deltaKcal > 0){
+    deltaHtml = `<div class="conv-delta up">▲ +${deltaKcal} kcal vs. el original</div>`;
+  } else {
+    deltaHtml = `<div class="conv-delta down">▼ ${deltaKcal} kcal vs. el original</div>`;
+  }
 
   let warning = '';
   if(!sameMacro){
     warning = `<div class="alert-box amber" style="margin-top:14px;text-align:left">
       <div class="alert-title amber">⚠ Categorías distintas</div>
-      <div class="alert-body">"${fromFood.name}" aporta principalmente ${fromFood.macro==='p'?'proteína':'carbohidratos'} y "${toFood.name}" aporta ${toFood.macro==='p'?'proteína':'carbohidratos'}. El cálculo iguala el macro de origen (${macroLabel}), pero no son intercambiables nutricionalmente — revisa tu plan si buscas mantener ambos macros equilibrados.</div>
+      <div class="alert-body">"${fromFood.name}" aporta sobre todo ${fromFood.macro==='p'?'proteína':'carbohidratos'} y "${toFood.name}" aporta ${toFood.macro==='p'?'proteína':'carbohidratos'}. El cálculo iguala el macro de origen (${macroLabel}), pero no son intercambiables nutricionalmente.</div>
     </div>`;
   }
 
   resultEl.innerHTML = `
     <div class="conv-result">
-      <div class="conv-result-eq">${Math.round(macroTotal)}g de ${macroLabel} equivalen a</div>
+      <div class="conv-result-eq">${Math.round(macroTotal)} g de ${macroLabel} equivalen a</div>
       <div><span class="conv-result-val">${toAmt}</span><span class="conv-result-unit">g</span></div>
       <div class="conv-result-food">de <strong>${toFood.name}</strong></div>
+      ${deltaHtml}
       <div class="conv-result-detail">
         <div class="conv-result-detail-item">
-          <div class="conv-result-detail-val">${fromAmt}g</div>
+          <div class="conv-result-detail-val">${fromAmt} g</div>
           <div class="conv-result-detail-label">${fromFood.name}</div>
         </div>
         <div class="conv-result-detail-item">
-          <div class="conv-result-detail-val">${fromKcal} kcal</div>
-          <div class="conv-result-detail-label">Original</div>
+          <div class="conv-result-detail-val">${fromKcal}</div>
+          <div class="conv-result-detail-label">kcal<br>original</div>
         </div>
         <div class="conv-result-detail-item">
-          <div class="conv-result-detail-val">${toKcal} kcal</div>
-          <div class="conv-result-detail-label">Reemplazo</div>
+          <div class="conv-result-detail-val">${toKcal}</div>
+          <div class="conv-result-detail-label">kcal<br>reemplazo</div>
         </div>
       </div>
     </div>
@@ -2683,9 +2957,155 @@ document.addEventListener('click', (e)=>{
   if(wrap && !wrap.contains(e.target)) clearSearch();
 });
 
+/* ═══ MI PLAN · CONFIGURACIÓN PLEGABLE ═══ */
+function toggleSetup(){
+  const c = document.getElementById('setup-card');
+  if(c) c.classList.toggle('open');
+}
+function updateSetupSummary(){
+  const el = document.getElementById('setup-summary');
+  if(!el) return;
+  const sexoEl = document.getElementById('sel-sexo');
+  const etapaEl = document.getElementById('sel-etapa');
+  if(!sexoEl || !etapaEl) return;
+  const sexo = sexoEl.value === 'm' ? 'Masculino' : 'Femenino';
+  const etapa = {volumen:'Volumen',definicion:'Definición',recomp:'Recomposición',mantenimiento:'Mantenimiento'}[etapaEl.value] || '—';
+  const kcal = parseInt(document.getElementById('inp-kcal').value, 10);
+  const p = parseInt(document.getElementById('inp-prot').value, 10) || 0;
+  const c = parseInt(document.getElementById('inp-carb').value, 10) || 0;
+  const f = parseInt(document.getElementById('inp-fat').value, 10) || 0;
+  const parts = [etapa, sexo];
+  if(kcal) parts.push(String(kcal).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' kcal');
+  if(p || c || f) parts.push(`${p} / ${c} / ${f} g`);
+  let txt = parts.join('  ·  ');
+  if(typeof restricciones !== 'undefined' && restricciones.size){
+    txt += `  ·  ${restricciones.size} restricción${restricciones.size > 1 ? 'es' : ''}`;
+  }
+  if(!kcal && !(p || c || f)) txt += '  ·  toca para completar';
+  el.textContent = txt;
+}
+function initSetupState(){
+  const c = document.getElementById('setup-card');
+  if(!c) return;
+  const hasKcal = !!document.getElementById('inp-kcal').value;
+  const hasMacros = ['inp-prot','inp-carb','inp-fat'].some(id => (parseInt(document.getElementById(id).value, 10) || 0) > 0);
+  if(!hasKcal || !hasMacros) c.classList.add('open');
+}
+
+/* ═══ COMPRAS · CHECKLIST POR MACRONUTRIENTE ═══ */
+let comprasChecks = (function(){
+  try{ return new Set(JSON.parse(localStorage.getItem('sl_compras') || '[]')); }
+  catch(e){ return new Set(); }
+})();
+function saveComprasChecks(){
+  try{ localStorage.setItem('sl_compras', JSON.stringify([...comprasChecks])); }catch(e){}
+}
+function comprasKey(groupKey, name){ return groupKey + '::' + name; }
+
+function buildCompras(){
+  const el = document.getElementById('compras-content');
+  if(!el) return;
+  let total = 0, done = 0, groups = '';
+  MACROS_DATA.forEach(g => {
+    const rows = g.items.map(it => {
+      const k = comprasKey(g.key, it.n);
+      const checked = comprasChecks.has(k);
+      total++; if(checked) done++;
+      const kEsc = k.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      return `<div class="shop-item${checked ? ' done' : ''}" onclick="toggleCompra(this,'${kEsc}')" role="button" tabindex="0" aria-pressed="${checked}" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleCompra(this,'${kEsc}')}">
+        <span class="shop-check" aria-hidden="true">✓</span>
+        <span class="shop-item-body">
+          <span class="shop-item-name"><span class="shop-emoji">${it.e}</span>${it.n}</span>
+          <span class="shop-item-why">${it.why}</span>
+        </span>
+      </div>`;
+    }).join('');
+    groups += `<div class="shop-group">
+      <div class="shop-group-head">
+        <span class="shop-group-title">${g.nombre}</span>
+        <span class="shop-group-count">${g.items.length} fuentes</span>
+      </div>
+      ${rows}
+    </div>`;
+  });
+  el.innerHTML = `
+    <div class="shop-toolbar">
+      <span class="shop-progress" id="shop-progress"><b>${done}</b> / ${total} marcados</span>
+      <button type="button" class="shop-btn primary" id="shop-copy" onclick="copyCompras()">Copiar lista</button>
+      <button type="button" class="shop-btn" onclick="clearCompras()">Limpiar</button>
+    </div>
+    ${groups}
+    <div class="info-banner" style="margin-top:8px"><strong>Cómo usarla:</strong> marca lo que ya tienes en casa. «Copiar lista» exporta lo que te falta, listo para pegar en tus notas o enviar por WhatsApp.</div>
+  `;
+}
+function updateShopProgress(){
+  const p = document.getElementById('shop-progress');
+  if(!p) return;
+  let total = 0, done = 0;
+  MACROS_DATA.forEach(g => g.items.forEach(it => {
+    total++; if(comprasChecks.has(comprasKey(g.key, it.n))) done++;
+  }));
+  p.innerHTML = `<b>${done}</b> / ${total} marcados`;
+}
+function toggleCompra(row, k){
+  if(comprasChecks.has(k)) comprasChecks.delete(k); else comprasChecks.add(k);
+  row.classList.toggle('done');
+  row.setAttribute('aria-pressed', comprasChecks.has(k));
+  saveComprasChecks();
+  updateShopProgress();
+}
+function clearCompras(){
+  comprasChecks.clear();
+  saveComprasChecks();
+  buildCompras();
+}
+function copyCompras(){
+  const anyChecked = comprasChecks.size > 0;
+  const lines = ['STRENGTHLAB — Lista de compras', ''];
+  MACROS_DATA.forEach(g => {
+    const items = g.items.filter(it => {
+      const has = comprasChecks.has(comprasKey(g.key, it.n));
+      return anyChecked ? !has : true;
+    });
+    if(!items.length) return;
+    lines.push(g.nombre.toUpperCase());
+    items.forEach(it => lines.push('•  ' + it.n));
+    lines.push('');
+  });
+  lines.push('— Guía nutricional STRENGTHLAB · @rennzolifts');
+  const txt = lines.join('\n');
+  const btn = document.getElementById('shop-copy');
+  const feedback = () => {
+    if(btn){
+      btn.classList.add('copied');
+      const prev = btn.textContent;
+      btn.textContent = 'Copiado ✓';
+      setTimeout(() => { btn.classList.remove('copied'); btn.textContent = prev; }, 1800);
+    }
+    if(typeof showToast === 'function') showToast('Lista de compras copiada');
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(feedback).catch(() => { comprasFallbackCopy(txt); feedback(); });
+  } else {
+    comprasFallbackCopy(txt); feedback();
+  }
+}
+function comprasFallbackCopy(txt){
+  const ta = document.createElement('textarea');
+  ta.value = txt;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try{ document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(ta);
+}
+
 /* ── INIT ── */
 loadPrefs();
+initSetupState();
 buildPlan();
+buildCompras();
 buildMicros();
 buildMacros();
 buildTiming();
